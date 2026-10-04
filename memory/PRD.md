@@ -54,5 +54,15 @@ large buttons. Core: local player profiles, math game (4 operations × 2 difficu
 - P2: Edit/delete player.
 - P2: Per-operation session length options for practice.
 
+## Export for self-build (EAS on Windows) — 2026-10-04
+- Clean export prepared at `/app/export/petualangan-angka/` and zipped to `/app/petualangan-angka.zip`.
+- Minimal changes (export copy only; live Emergent config untouched):
+  - Removed Emergent sandbox `preinstall` guard + guard scripts from package.json/scripts (would block `yarn install` on a normal laptop).
+  - Added `eas.json` with `preview` profile (distribution internal, developmentClient false, android.buildType apk) plus development/production.
+  - app.json: name → "Petualangan Angka", slug → "petualangan-angka"; kept android.package/iOS bundleId. No `owner`, no `extra.eas.projectId` (user links to own account via `eas init`).
+- Excluded: node_modules, .expo, caches, .env, logs, .git, keystores. Yarn + yarn.lock preserved.
+- `README-WINDOWS.md` included with ordered EAS build steps.
+- Readiness checked from configuration/static checks only — NOT proven by an actual Android build (no cloud build run, per request).
+
 ## Known Issues
 - None open. (Web preview is a convenience only; the deliverable is the native Android build using SQLite.)
